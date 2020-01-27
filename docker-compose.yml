@@ -13,8 +13,8 @@ networks:
     driver: bridge
     ipam:
       driver: default
-      config:
-       - subnet: ${NETWORK_IP_CIDR}
+  backbone-net:
+    name: backbone-net
 
 services:
   grafana:
@@ -44,8 +44,7 @@ services:
       - ./grafana:/grafana
     networks:
       - grafana-net
-    ports:
-      - 3000:3000
+      - backbone-net
     depends_on:
       - grafana-mariadb
       - grafana-redis
